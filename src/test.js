@@ -1,30 +1,30 @@
-//할 일.. 랜덤번호 맞추기
-//maxNumber를 수정할 수 있는 슬라이드가 있고 슬라이드로 조절할 때마다 maxNumber가 바뀌고 텍스트 렌더링도 바뀜
-//maxNumber에 따라서 사용자가 입력할 수 있는 값과 기계가 생성한 난수의 최대값이 정해진다.
-//html 파일에서 제출이나 on클릭이벤트가 발생하면 js는 그 이벤트를 읽는다.
-//사용자의 값과 난수값을 비교해서 HTML코드 변경해서 결과출력
+//html element 저장
+let jsTitleSpan = document.getElementById("js-title").querySelector("span");
+let jsRange = document.getElementById("js-range");
+let guessedInput = document.getElementById("guessed-input");
+let jsResultSpan = document.getElementById("js-result").querySelector("span");
+//초기의 maxNumber값 저장
+let maxNumber = Number(jsRange.value);
 
-const jsTitleSpan = document.getElementById("js-title").querySelector("span");
-const jsRange = document.getElementById("js-range");
-const guessedInput = document.getElementById("guessed-input");
-const jsResultSpan = document.getElementById("js-result").querySelector("span");
-let maxNumber = jsRange.value;
-
+//최대값 업데이트 함수
 const updateMaxNumber = () => {
-  maxNumber = jsRange.value;
+  maxNumber = Number(jsRange.value);
+  guessedInput.setAttribute("max", maxNumber);
   console.log(maxNumber);
-  console.log("update complete");
+  console.log("update complete!\n");
 };
 
-const changeMaxNumber = () => {
+//최대값을 HTML에 작성하는 함수.
+const printMaxNumber = () => {
   updateMaxNumber();
   jsTitleSpan.innerHTML = `${maxNumber}`;
 };
 
+//결과를 HTML에 작성하는 함수.
 const printResult = (e) => {
   e.preventDefault();
-  let guessedNumber = guessedInput.value;
-  let machineNumber = Math.floor(Math.random() * maxNumber + 1);
+  let guessedNumber = Number(guessedInput.value); //플레이어가 입력한 숫자
+  let machineNumber = Math.floor(Math.random() * (maxNumber + 1)); //기계가 생성한 숫자
   if (guessedNumber === machineNumber) {
     jsResultSpan.innerHTML = `You choose ${guessedNumber} the machine choose ${machineNumber}
     You win!`;
@@ -34,5 +34,6 @@ const printResult = (e) => {
   }
 };
 
-jsRange.addEventListener("input", changeMaxNumber);
+//이벤트 리스너 관련
+jsRange.addEventListener("input", printMaxNumber);
 document.addEventListener("submit", printResult);

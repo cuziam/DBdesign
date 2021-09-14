@@ -9,7 +9,7 @@
 <body>
     <h1>RandomNumberGame</h1>
     <div>
-        <h3 id="js-title">Generate a number between 0 and<span></span></h3>
+        <h3 id="js-title">Generate a number between 0 and<span>0</span></h3>
         <datalist id="number">
             <option value="50">
             </option>
@@ -24,7 +24,7 @@
     </div>
     <form id="js-guess">
         <label for="guessed-input">Guess the number:</label>
-        <input id="guessed-input" type="number" max="200" min="0" />
+        <input id="guessed-input" type="number" max="0" min="0" required/>
         <button type="submit">play!</button><!--누르면 결과를 출력하도록-->
     </form>
     <div id="js-result">
