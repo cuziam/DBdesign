@@ -1,0 +1,3 @@
+week_3/node_modules/
+week_8/node_modules/
+week_10/week_10/node_modules/
